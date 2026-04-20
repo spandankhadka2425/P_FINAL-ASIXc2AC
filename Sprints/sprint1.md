@@ -8,6 +8,4 @@ Para comenzar nuestro proyecto, decidimos añadir estos tres elementos como base
 
 Así es como se ve nuestro ProofHub por ahora.
 
-<img src="../Imagen/profhub_principio.png" 
-
-
+![ProofHub Backlog - Sprint 1](../Imagen/profhub_principio.png)
