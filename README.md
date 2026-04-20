@@ -4,9 +4,8 @@
 |-------|-------|
 | **Módulo** | 0379 - Proyecto intermodular en administración de sistemas informáticos en red |
 | **Actividad** | Proyecto Final - Despliegue de SOC para monitorización de seguridad en tiempo real |
-| **Grupo** | ASIXcAC-SOC |
+| **Grupo** | ASIXcAC-14 |
 | **Miembros** | Anmolpreet Singh Kaur, Spandan Khadka |
-| **Metodología** | 3 sprints ()|
 
 ## Objetivo
 
