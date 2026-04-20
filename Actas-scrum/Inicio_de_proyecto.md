@@ -18,4 +18,5 @@ En esta acta de proyecto analizamos nuestra propuesta, la desglosamos y discutim
 Por ejemplo, decidimos terminar tareas como crear el backlog en nuestro ProofHub o crear la estructura para la documentación al principio del sprint 1.
 
 
+- [Index](Index.md)
 

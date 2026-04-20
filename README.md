@@ -11,3 +11,6 @@
 
 Implementar un **Centro de Operaciones de Seguridad (SOC)** para monitorizar una aplicación web propia y detectar incidentes de seguridad en tiempo real, utilizando **Elastic Stack** y **Wazuh** para la recolección, análisis y visualización centralizada de logs, complementado con un panel HTML personalizado y almacenamiento estructurado de alertas en Mysql
 
+
+
+- [Index](Index.md)
