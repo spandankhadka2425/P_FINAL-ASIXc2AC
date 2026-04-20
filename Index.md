@@ -10,7 +10,7 @@
 - [conf_elastic](Configuracion/conf_elastic.md)
 - [Conf_mysql](Configuracion/Conf_mysql.md)
 - [conf_red](Configuracion/conf_red.md)
-- [conf_srv_web_apache2](Configuracion/conf_srv_web_apache2.md)
+- [conf_srv_web_apache2](Configuracion/conf_serv_web_apache2.md)
 - [index_apache2](Configuracion/index_apache2.md)
 
 ## Documentación
