@@ -12,4 +12,4 @@ Así es como se ve nuestro ProofHub por ahora.
 
 
 
-- [Index](Index.md)
+- [Index](../Index.md)

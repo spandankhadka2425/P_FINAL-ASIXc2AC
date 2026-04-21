@@ -68,4 +68,4 @@ sudo tail -f /var/log/apache2/error.log
 ![Página Web Apache](../Imagen/apache2_error_log.png)
 
 
-- [Index](Index.md)
+- [Index](../Index.md)

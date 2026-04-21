@@ -142,4 +142,4 @@ Página web temporal que muestra una galería de arte con imágenes de obras fam
 </html>
 
 ```
-- [Index](Index.md)
+- [Index](../Index.md)

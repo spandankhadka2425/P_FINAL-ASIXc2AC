@@ -46,4 +46,4 @@ Ping desde SRV2 a SRV1.
 ![Ping desde SRV2 a SRV1](../Imagen/ping_srv1.png)
 ```
 
-- [Index](Index.md)
+- [Index](../Index.md)

@@ -106,4 +106,4 @@ Nginx es más eficiente para alto tráfico, pero para nuestro proyecto académic
 **Usamos Apache.** Es el servidor web perfecto para aprender SOC porque sus logs son muy claros, la integración con Wazuh es inmediata y podemos centrarnos en monitorizar ataques en lugar de complicarnos con la configuración del servidor.
 
 
-- [Index](Index.md)
+- [Index](../Index.md)
