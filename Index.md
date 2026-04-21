@@ -17,7 +17,7 @@
 - [Seleccion-de-software](Documentacion/Seleccion-de-software.md)
 
 ## Sprintos
-- [sprint1](Sprintos/sprint1.md)
+- [sprint1](Sprints/sprint1.md)
 
 ## Archivos raíz
 - [Index](Index.md)
