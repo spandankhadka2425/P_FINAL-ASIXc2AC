@@ -1,3 +1,3 @@
-![Página Web Apache](../Imagen/diagrama_ini.png)
+![Página Web Apache](../Imagen/Diagrama_ini.png)
 
 - [Index](../Index.md)
