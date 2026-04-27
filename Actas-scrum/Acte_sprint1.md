@@ -40,11 +40,11 @@ Instalar MySQL, crear la base de datos `soc_alerts` y la tabla `alerts` para alm
 
 ## Estado del ProofHub durante el Sprint
 
-A continuación, se muestra el estado de nuestro backlog en ProofHub durante el Sprint 1:
+A continuación, se muestramos el estado de nuestro backlog en ProofHub durante el Sprint 1:
 
 ![ProofHub Backlog Inicio](../Imagen/proofhub_principio.png)
 
 ![ProofHub Sprint 1](../Imagen/proofhub_sprint1.png)
 
-![ProofHub Tareas](../Imagen/proofhub_tascas.png)
+![ProofHub Tareas](../Imagen/proofhub_s1_comp.png)
 
