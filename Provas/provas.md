@@ -17,19 +17,6 @@ Estoy listando todas las bases de datos en MySQL para verificar que la base de d
 **Por qué es necesario para nuestro proyecto:**
 Esta comprobación es fundamental porque nuestro SOC necesita almacenar todas las alertas de seguridad en una base de datos estructurada. Sin la base de datos `soc_alerts`, no podríamos guardar las alertas generadas por Wazuh, ni mostrarlas en nuestro panel HTML personalizado. Verificar que la base de datos existe antes de continuar con la creación de tablas nos asegura que todo el sistema de almacenamiento de alertas funcionará correctamente.
 
-**Salida del comando:**
-```
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| soc_alerts         |
-| sys                |
-+--------------------+
-```
-
 **Que muestra esto:**
 La base de datos `soc_alerts` aparece en la lista, lo que confirma que se creó correctamente. Las otras cuatro bases de datos son del sistema de MySQL y vienen por defecto.
 
@@ -53,23 +40,6 @@ Estoy mostrando la estructura de la tabla `alerts` dentro de la base de datos `s
 
 **Por qué es necesario para nuestro proyecto:**
 Esta comprobación es fundamental porque la tabla `alerts` es donde se almacenarán todas las alertas de seguridad generadas por Wazuh. Necesitamos asegurarnos que la tabla tiene los campos correctos para guardar información como la IP del atacante, el tipo de alerta, la gravedad, la descripción y el estado de cada incidente. Sin una tabla bien estructurada, nuestro SOC no podría registrar ni gestionar las alertas de seguridad.
-
-**Salida del comando:**
-```
-+-------------+--------------+------+-----+-------------------+-------------------+
-| Field       | Type         | Null | Key | Default           | Extra             |
-+-------------+--------------+------+-----+-------------------+-------------------+
-| id          | int          | NO   | PRI | NULL              | auto_increment    |
-| timestamp   | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-| source_ip   | varchar(45)  | YES  |     | NULL              |                   |
-| machine_name| varchar(50)  | YES  |     | NULL              |                   |
-| alert_type  | varchar(100) | YES  |     | NULL              |                   |
-| severity    | varchar(20)  | YES  |     | NULL              |                   |
-| description | text         | YES  |     | NULL              |                   |
-| wazuh_rule_id| int         | YES  |     | NULL              |                   |
-| status      | varchar(20)  | YES  |     | new               |                   |
-+-------------+--------------+------+-----+-------------------+-------------------+
-```
 
 **Qué muestra esto:**
 La tabla `alerts` tiene todos los campos que diseñamos:
@@ -146,3 +116,69 @@ Esta prueba confirma que el servidor backup está correctamente configurado y pu
 curl http://localhost
 ```
 
+
+# Verificación de la Página Web en Servidores Principal y Backup
+
+## Contexto
+
+Tenemos dos servidores web configurados para nuestro proyecto SOC Security:
+- **Servidor Principal (SRV2_A)**: IP 192.168.140.2
+- **Servidor Backup (SRV2_B)**: IP 192.168.140.7
+
+El servidor backup actúa como réplica exacta del principal. Si el servidor principal falla, HAProxy redirigirá automáticamente el tráfico al backup para que los usuarios no noten ninguna interrupción del servicio.
+
+---
+
+## Imagen 1 - Página Web del Servidor Principal (192.168.140.2)
+
+![Pagina Principal](../Imagen/prova_mysql_3.png)
+
+**Características visibles:**
+- Título: "ArtGalería"
+- Subtítulo: "SOC Security Project | Monitorización en Tiempo Real"
+- Menú de navegación: Galería, Lista de Obras, Acerca de
+- Barra de búsqueda y filtros por categoría (Todos, Renacimiento, Romanticismo, Impresionismo)
+- Contador: "6 Obras de Arte"
+- Contador de visitas: "3 Visitas"
+- Fecha de última actualización: "May 2026"
+- Botón "Obra Aleatoria"
+- Badge "SOC Monitorizada 24/7"
+
+---
+
+## Imagen 2 - Página Web del Servidor Backup (192.168.140.7)
+
+![Pagina Backup](../Imagen/prova_mysql_4.png)
+
+**Características visibles:**
+- Título: "ArtGalería"
+- Subtítulo: "SOC Security Project | Monitorización en Tiempo Real"
+- Menú de navegación: Galería, Lista de Obras, Acerca de
+- Barra de búsqueda y filtros por categoría (Todos, Renacimiento, Romanticismo, Impresionismo)
+- Contador: "6 Obras de Arte"
+- Contador de visitas: "5 Visitas"
+- Fecha de última actualización: "May 2026"
+- Botón "Obra Aleatoria"
+- Badge "SOC Monitorizada 24/7"
+---
+
+## Comandos utilizados para verificar
+
+```bash
+# Verificar servidor principal
+curl -I http://192.168.140.2
+
+# Verificar servidor backup
+curl -I http://192.168.140.7
+
+# Verificar página completa desde navegador
+# Principal: http://192.168.140.2
+# Backup: http://192.168.140.7
+```
+La única diferencia son las visitas, eso se debe a que he visitado el backup más veces que la página web del servidor principal, por lo que cuenta la cantidad de visitas.
+
+*Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
+*Fecha: 05/05/2026*
+
+
+- [Index](../Index.md)
