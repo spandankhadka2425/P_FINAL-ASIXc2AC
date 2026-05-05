@@ -4,7 +4,7 @@
 **Servidor Web:** Apache2  
 
 ## Descripción
-Página web temporal que muestra una galería de arte con imágenes de obras famosas. Esta página será monitorizada posteriormente por el SOC.
+Página web que muestra una galería de arte con imágenes de obras famosas. Esta página será monitorizada posteriormente por el SOC.
 
 ## Contenido de la Página
 
