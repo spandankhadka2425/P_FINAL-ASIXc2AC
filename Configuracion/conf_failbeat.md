@@ -1,6 +1,6 @@
 # Instalación y Configuración de Filebeat
 
-## Imagen 1 - Instalación de Filebeat
+## Instalación de Filebeat
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -20,12 +20,14 @@ After this operation, 264 MB of additional disk space will be used.
 
 ---
 
-## Imagen 2 - Configuración de Filebeat para enviar logs de Wazuh a Elasticsearch
+## Configuración de Filebeat para enviar logs de Wazuh a Elasticsearch
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
 **Que estamos haciendo:**
 Configuramos Filebeat para que lea los archivos de alertas generados por Wazuh Manager en `/var/ossec/logs/alerts/alerts.json` y los envíe a Elasticsearch para su indexación y almacenamiento centralizado.
+
+![ Elasticsearch](../Imagen/filebeat_config.png)
 
 **Ruta de logs configurada:**
 ```
@@ -34,7 +36,7 @@ Configuramos Filebeat para que lea los archivos de alertas generados por Wazuh M
 
 ---
 
-## Imagen 3 - Verificación de la integración con Elasticsearch
+## Verificación de la integración con Elasticsearch
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -71,4 +73,6 @@ La integración entre Wazuh, Filebeat y Elasticsearch está funcionando correcta
 | Kibana | Visualiza logs y alertas | Activo |
 
 ---
+
+- [Index](../Index.md)
 

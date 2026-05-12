@@ -1,7 +1,7 @@
 ```markdown
 # Instalación y Configuración de Agentes Wazuh
 
-## Imagen 1 - Instalación del agente Wazuh en un cliente
+## Instalación del agente Wazuh en un cliente
 
 **Donde se ejecuta:** Máquinas monitorizadas (SRV2_A, SRV2_B, clientes)
 
@@ -17,7 +17,7 @@ Instalamos el agente de Wazuh en cada una de las máquinas que queremos monitori
 
 ---
 
-## Imagen 2 - Configuración de la conexión del agente con el Manager
+## Configuración de la conexión del agente con el Manager
 
 **Donde se ejecuta:** Máquinas monitorizadas
 
@@ -36,7 +36,7 @@ Configuramos el agente para que se conecte al Wazuh Manager en la dirección IP 
 
 ---
 
-## Imagen 3 - Alerta de seguridad en Kibana (SSH failed password)
+## Alerta de seguridad en Kibana (SSH failed password)
 
 **Donde se visualiza:** Kibana - Interfaz web (http://192.168.140.5:5601)
 
@@ -72,4 +72,5 @@ Visualizamos en Kibana una alerta generada por Wazuh que muestra un intento de c
 
 *Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
 *Fecha: 12/05/2026*
-```
+
+- [Index](../Index.md)

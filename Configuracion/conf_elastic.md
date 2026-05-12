@@ -4,7 +4,7 @@
 
 # Instalación y Configuración de Elasticsearch
 
-## Imagen 1 - Instalación de Elasticsearch
+## Instalación de Elasticsearch
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -24,7 +24,7 @@ After this operation, 1301 MB of additional disk space will be used.
 
 ---
 
-## Imagen 2 - Configuración de Elasticsearch
+## Configuración de Elasticsearch
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -44,7 +44,7 @@ Configuramos Elasticsearch como un cluster de un solo nodo. Definimos el nombre 
 
 ---
 
-## Imagen 3 - Reseteo de la contraseña del usuario elastic
+## Reseteo de la contraseña del usuario elastic
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -63,7 +63,7 @@ J0wRlkV3Ftbrs7Cskup
 
 ---
 
-## Imagen 4 - Exportación de la contraseña como variable de entorno
+## Exportación de la contraseña como variable de entorno
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -77,7 +77,7 @@ Exportamos la contraseña de Elasticsearch como una variable de entorno para pod
 
 ---
 
-## Imagen 5 - Verificación del estado de Elasticsearch
+## Verificación del estado de Elasticsearch
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -97,7 +97,7 @@ Verificamos que el servicio de Elasticsearch está activo y funcionando correcta
 
 ---
 
-## Imagen 6 - Comprobación de que Elasticsearch responde a peticiones
+## Comprobación de que Elasticsearch responde a peticiones
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5) o desde cualquier cliente
 
@@ -121,7 +121,7 @@ Accedemos a la API de Elasticsearch para comprobar que el servicio responde corr
   "tagline": "You Know, for Search"
 }
 ```
-
+![ Elasticsearch](../Imagen/elastic_json.png)
 ---
 
 ## Resumen de la Instalación de Elasticsearch
@@ -137,4 +137,4 @@ Accedemos a la API de Elasticsearch para comprobar que el servicio responde corr
 
 ---
 
-**¿Continuamos con la documentación de Kibana?**
+- [Index](../Index.md)

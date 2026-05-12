@@ -1,6 +1,6 @@
 # Instalación y Configuración de Kibana
 
-## Imagen 1 - Instalación de Kibana
+## Instalación de Kibana
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -20,7 +20,7 @@ After this operation, 1173 MB of additional disk space will be used.
 
 ---
 
-## Imagen 2 - Configuración de Kibana
+## Configuración de Kibana
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -37,7 +37,7 @@ Configuramos Kibana para que escuche en todas las interfaces de red (`0.0.0.0`) 
 
 ---
 
-## Imagen 3 - Generación del token de enrolamiento para Kibana
+## Generación del token de enrolamiento para Kibana
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -54,9 +54,12 @@ Generamos un token temporal que permitirá a Kibana autenticarse y conectarse de
 eyJ2ZXIoiI4Lje0LjAILcJhZHIIoIsIMtKylJE2OC4xMjIumJQxOjkyMDAIXSwIZmdyIjoIyZc2OWF1...
 ```
 
+![kibana](../Imagen/kibana_enrollment_token.png)
+
+
 ---
 
-## Imagen 4 - Acceso a la interfaz web de Kibana
+## Acceso a la interfaz web de Kibana
 
 **Donde se ejecuta:** Navegador web desde cualquier máquina de la red
 
@@ -64,13 +67,16 @@ eyJ2ZXIoiI4Lje0LjAILcJhZHIIoIsIMtKylJE2OC4xMjIumJQxOjkyMDAIXSwIZmdyIjoIyZc2OWF1.
 ```
 http://192.168.140.5:5601
 ```
+![kibana](../Imagen/kibana_verification_code.png)
+
 
 **Que estamos haciendo:**
 Accedemos a la interfaz web de Kibana para verificar que está funcionando correctamente. Una vez conectado, solicitaremos el token de enrolamiento generado anteriormente para enlazar Kibana con Elasticsearch.
 
+
 ---
 
-## Imagen 5 - Verificación del stack completo (Elasticsearch + Kibana)
+## Verificación del stack completo (Elasticsearch + Kibana)
 
 **Donde se ejecuta:** Servidor SOC (SRV1 - 192.168.140.5)
 
@@ -105,3 +111,5 @@ Confirmamos que tanto Elasticsearch como Kibana están operativos y accesibles d
 | Cluster name | soc-lab | Configurado |
 
 ---
+
+- [Index](../Index.md)

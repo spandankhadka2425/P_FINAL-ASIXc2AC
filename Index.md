@@ -15,6 +15,11 @@
 - [conf_apache2_index](Configuracion/conf_apache2_index.md)
 - [Conf_Haproxy](Configuracion/conf_Haproxy.md)
 - [Conf_haproxy_b](Configuracion/conf_haproxy_b.md)
+- [Conf_elastic](Configuracion/conf_haproxy_b.md)
+- [Conf_failbeat](Configuracion/conf_elastic.md)
+- [Conf_firewall](Configuracion/conf_failbeat.md)
+- [Conf_kibana](Configuracion/conf_kibana.md)
+- [Conf_wazuh](Configuracion/conf_wazuh.md)
 
 ## Documentación
 - [Seleccion-de-software](Documentacion/Seleccion-de-software.md)
