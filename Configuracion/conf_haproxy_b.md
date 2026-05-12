@@ -1,7 +1,7 @@
 ```markdown
 # Configuración del Load Balancer Backup (SRV0BAK)
 
-## Imagen 1 - Instalación de HAProxy en el servidor backup
+## Instalación de HAProxy en el servidor backup
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 
@@ -17,7 +17,7 @@ Instalando HAProxy en el servidor load balancer de respaldo (SRV0BAK). Este serv
 
 ---
 
-## Imagen 2 - Copia de seguridad de la configuración original
+## Copia de seguridad de la configuración original
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 
@@ -33,7 +33,7 @@ Creamos una copia de seguridad del archivo de configuración original de HAProxy
 
 ---
 
-## Imagen 3 - Edición del archivo de configuración
+## Edición del archivo de configuración
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 
@@ -49,7 +49,7 @@ Editamos el archivo de configuración `haproxy.cfg` para copiar la misma configu
 
 ---
 
-## Imagen 4 - Configuración del archivo haproxy.cfg
+## Configuración del archivo haproxy.cfg
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 
@@ -84,7 +84,7 @@ Copiamos la configuración del HAProxy activo al backup. Esta configuración def
 
 ---
 
-## Imagen 5 - Asignación manual de la IP activa y comprobación
+## Asignación manual de la IP activa y comprobación
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 
@@ -101,7 +101,7 @@ Simulamos un failover manual. Asignamos la IP del load balancer activo (192.168.
 
 ---
 
-## Imagen 6 - Verificación de la IP asignada
+## Verificación de la IP asignada
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 
@@ -117,7 +117,7 @@ Verificamos que la IP 192.168.140.4 se ha añadido correctamente a la interfaz `
 
 ---
 
-## Imagen 7 - Prueba completa de failover manual
+## Prueba completa de failover manual
 
 **Donde se ejecuta:** Servidor Load Balancer Backup (SRV0BAK)
 

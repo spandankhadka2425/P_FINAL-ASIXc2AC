@@ -86,3 +86,5 @@ El Sprint 2 ha sido el sprint final del proyecto (del 27/04/2026 al 12/05/2026).
 ---
 *Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
 *Fecha de la review: 12/05/2026*
+
+- [Index](../Index.md)

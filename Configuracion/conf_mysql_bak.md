@@ -1,7 +1,7 @@
 ```markdown
 # Configuración del Servidor Web Backup (SRV2B)
 
-## Imagen 1 - Instalación de Apache2
+## Instalación de Apache2
 
 **Donde se ejecuta:** Servidor Backup (SRV2B - 192.168.140.6)
 
@@ -17,7 +17,7 @@ Instalando el servidor web Apache2 en el servidor backup (SRV2B). Este servidor 
 
 ---
 
-## Imagen 2 - Instalación de MySQL Server
+## Instalación de MySQL Server
 
 **Donde se ejecuta:** Servidor Backup (SRV2B - 192.168.140.6)
 
@@ -33,7 +33,7 @@ Instalando MySQL Server en el servidor backup. La base de datos se replicara des
 
 ---
 
-## Imagen 3 - Compresion de la pagina web
+## Compresion de la pagina web
 
 **Donde se ejecuta:** Servidor Principal (SRV2 - 192.168.140.2)
 
@@ -50,7 +50,7 @@ Comprimiendo toda la pagina web (Galería de Arte) que se encuentra en el direct
 
 ---
 
-## Imagen 4 - Cambio de permisos del archivo comprimido
+## Cambio de permisos del archivo comprimido
 
 **Donde se ejecuta:** Servidor Principal (SRV2 - 192.168.140.2)
 
@@ -66,7 +66,7 @@ Cambiando los permisos del archivo comprimido a 644 (lectura y escritura para el
 
 ---
 
-## Imagen 5 - Envio del archivo al servidor backup
+## Envio del archivo al servidor backup
 
 **Donde se ejecuta:** Servidor Principal (SRV2 - 192.168.140.2)
 
@@ -82,7 +82,7 @@ Enviando el archivo comprimido `galeria-web.tar.gz` desde el servidor principal 
 
 ---
 
-## Imagen 6 - Verificacion de la llegada del archivo
+## Verificacion de la llegada del archivo
 
 **Donde se ejecuta:** Servidor Backup (SRV2B - 192.168.140.6)
 
@@ -98,7 +98,7 @@ Verificando que el archivo comprimido ha llegado correctamente al servidor backu
 
 ---
 
-## Imagen 7 - Descompresion de la pagina web en el backup
+## Descompresion de la pagina web en el backup
 
 **Donde se ejecuta:** Servidor Backup (SRV2B - 192.168.140.6)
 
@@ -265,8 +265,6 @@ Ambas variables muestran `Yes`, lo que confirma que la replicacion esta activa y
 
 *Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
 *Fecha: 12/05/2026*
-
-
 
 
 - [Index](../Index.md)

@@ -7,7 +7,7 @@ Este firewall es una máquina dedicada que actúa como puerta de entrada a toda 
 
 ---
 
-## Imagen 1 - Activación del reenvío de IP (IP Forwarding)
+## Activación del reenvío de IP (IP Forwarding)
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -23,7 +23,7 @@ Activamos el reenvío de paquetes IP en el firewall. Esto permite que el firewal
 
 ---
 
-## Imagen 2 - Aplicación de los cambios de red
+## Aplicación de los cambios de red
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -42,7 +42,7 @@ Aplicamos los cambios de configuración de red sin necesidad de reiniciar el sis
 
 ---
 
-## Imagen 3 - Instalación de UFW (Uncomplicated Firewall)
+## Instalación de UFW (Uncomplicated Firewall)
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -56,7 +56,7 @@ Instalamos UFW, que es una herramienta sencilla para configurar el firewall en L
 
 ---
 
-## Imagen 4 - Configuración de políticas por defecto
+## Configuración de políticas por defecto
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -75,7 +75,7 @@ Establecemos las reglas por defecto del firewall:
 
 ---
 
-## Imagen 5 - Reglas de redirección de puertos (DNAT) para HTTPS
+## Reglas de redirección de puertos (DNAT) para HTTPS
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -100,7 +100,7 @@ Configuramos el firewall para redirigir (forward) el tráfico web hacia el HAPro
 
 ---
 
-## Imagen 6 - Permitir el reenvío de tráfico web hacia HAProxy
+## Permitir el reenvío de tráfico web hacia HAProxy
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -114,7 +114,7 @@ Permitimos explícitamente que el firewall pueda reenviar tráfico web (puerto 4
 
 ---
 
-## Imagen 7 - Verificación de que la página web es accesible
+## Verificación de que la página web es accesible
 
 **Donde se visualiza:** Navegador web
 
@@ -132,7 +132,7 @@ Verificamos desde un navegador externo que la página web es accesible a través
 
 ---
 
-## Imagen 8 - Configuración de redirección SSH a diferentes máquinas
+## Configuración de redirección SSH a diferentes máquinas
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -160,7 +160,7 @@ Configuramos el firewall para redirigir conexiones SSH a diferentes máquinas in
 
 ---
 
-## Imagen 9 - Apertura de puertos SSH en el firewall
+## Apertura de puertos SSH en el firewall
 
 **Donde se ejecuta:** Servidor Firewall
 
@@ -178,7 +178,7 @@ Abrimos los puertos 2221 al 2225 en el firewall para permitir conexiones SSH des
 
 ---
 
-## Imagen 10 - Reglas de ruta para SSH hacia cada máquina
+## Reglas de ruta para SSH hacia cada máquina
 
 **Donde se ejecuta:** Servidor Firewall
 

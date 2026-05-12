@@ -72,3 +72,5 @@ El diagrama de arquitectura no se completó en el Sprint 1 porque necesitábamos
 
 *Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
 *Fecha de la review: 27/04/2026*
+
+- [Index](../Index.md)

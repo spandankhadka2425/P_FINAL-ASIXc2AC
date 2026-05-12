@@ -1,7 +1,7 @@
 ```markdown
 # Configuración del Load Balancer HAProxy (SRV0)
 
-## Imagen 1 - Instalación de HAProxy
+## Instalación de HAProxy
 
 **Donde se ejecuta:** Servidor Load Balancer (SRV0 - 192.168.140.4)
 
@@ -17,7 +17,7 @@ Instalando HAProxy en el servidor load balancer (SRV0). HAProxy será el encarga
 
 ---
 
-## Imagen 2 - Verificación de la instalación y arranque del servicio
+## Verificación de la instalación y arranque del servicio
 
 **Donde se ejecuta:** Servidor Load Balancer (SRV0 - 192.168.140.4)
 
@@ -36,7 +36,7 @@ Verificamos que HAProxy se ha instalado correctamente con `haproxy -v` (versión
 
 ---
 
-## Imagen 3 - Copia de seguridad y edición del archivo de configuración
+## Copia de seguridad y edición del archivo de configuración
 
 **Donde se ejecuta:** Servidor Load Balancer (SRV0 - 192.168.140.4)
 
@@ -94,7 +94,7 @@ A continuación se muestra el contenido del archivo de configuración que hemos 
 ```markdown
 # Configuracion de HTTPS en HAProxy
 
-## Imagen 1 - Copia del certificado PEM al servidor HAProxy
+## Copia del certificado PEM al servidor HAProxy
 
 **Que estamos haciendo:**
 Copiamos el archivo `artgaleria.pem` desde el servidor web principal (SRV2) al servidor HAProxy (SRV0). Este archivo contiene el certificado SSL y la clave privada combinados, necesarios para que HAProxy pueda terminar las conexiones HTTPS y redirigir el trafico de forma segura.
@@ -106,7 +106,7 @@ scp /tmp/artgaleria.pem isard@192.168.140.4:/home/isard/
 
 ---
 
-## Imagen 2 - Verificacion del contenido del archivo PEM
+## Verificacion del contenido del archivo PEM
 
 **Que estamos haciendo:**
 Visualizamos el contenido del archivo `artgaleria.pem` generado. Este archivo contiene el certificado SSL (bloque BEGIN CERTIFICATE) y la clave privada (bloque BEGIN PRIVATE KEY). Ambos son necesarios para que HAProxy pueda cifrar y descifrar las conexiones HTTPS.
@@ -115,7 +115,7 @@ Visualizamos el contenido del archivo `artgaleria.pem` generado. Este archivo co
 
 ---
 
-## Imagen 3 - Generacion del archivo PEM combinado
+## Generacion del archivo PEM combinado
 
 **Que estamos haciendo:**
 Combinamos el certificado SSL y la clave privada en un unico archivo PEM. Utilizamos `sudo cat` para leer el certificado (`artgaleria.crt`) y la clave (`artgaleria.key`), y redirigimos la salida a `/tmp/artgaleria.pem`. Este formato PEM es el que requiere HAProxy para funcionar con HTTPS.
@@ -127,7 +127,7 @@ sudo cat /etc/ssl/artgaleria/artgaleria.crt /etc/ssl/artgaleria/artgaleria.key |
 
 ---
 
-## Imagen 4 - Configuracion final de HAProxy para HTTPS
+## Configuracion final de HAProxy para HTTPS
 
 **Que estamos haciendo:**
 Configuramos HAProxy para que escuche en el puerto 443 (HTTPS) y termine las conexiones SSL utilizando el certificado PEM. La configuracion incluye:

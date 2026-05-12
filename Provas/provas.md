@@ -181,4 +181,126 @@ La única diferencia son las visitas, eso se debe a que he visitado el backup m�
 *Fecha: 05/05/2026*
 
 
+# Pruebas de Validación del SOC
+
+## ¿Por qué hicimos estas pruebas?
+
+Después de construir todo nuestro SOC, necesitábamos comprobar que funciona. Realizamos varios ataques simulados para ver si nuestro SOC detecta actividades sospechosas y genera alertas.
+
+---
+
+## Prueba 1: Intentos de SSH con usuario falso
+
+**Comandos:**
+```bash
+ssh usuariofalso@192.168.140.1 -p 2222
+ssh usuariofalso@192.168.140.1 -p 2223
+ssh usuariofalso@192.168.140.1 -p 2224
+ssh usuariofalso@192.168.140.1 -p 2225
+```
+
+**Qué hicimos:** Intentamos entrar por SSH a diferentes servidores con un usuario que no existe.
+
+**Por qué es útil:** Los atacantes siempre prueban muchos usuarios y contraseñas para intentar entrar. Si nuestro SOC detecta estos intentos, podemos bloquear al atacante antes de que tenga éxito.
+
+**Resultado:** Wazuh generó alertas por cada intento fallido.
+
+---
+
+## Prueba 2: Acceso a páginas web sospechosas
+
+**Comandos:**
+```bash
+curl -k https://192.168.140.1/admin
+curl -k https://192.168.140.1/wp-login.php
+curl -k https://192.168.140.1/phpmyadmin
+curl -k https://192.168.140.1/.env
+```
+
+**Qué hicimos:** Intentamos acceder a rutas web que suelen ser objetivo de atacantes (paneles de administración, archivos de configuración, etc.).
+
+**Por qué es útil:** Los atacantes siempre buscan páginas de administración o archivos con información sensible. Si nuestro SOC detecta estos accesos, sabemos que alguien está explorando el sistema.
+
+**Resultado:** Wazuh generó alertas por accesos a rutas no autorizadas.
+
+---
+
+## Prueba 3: Escaneo de puertos con Nmap
+
+**Comandos:**
+```bash
+nmap -sV -Pn -p 443,2221,2222,2223,2224,2225 192.168.140.1
+nmap -A -T4 -Pn 192.168.140.1
+```
+
+**Qué hicimos:** Usamos Nmap (una herramienta de escaneo muy usada por atacantes) para descubrir qué puertos están abiertos en nuestro firewall.
+
+**Por qué es útil:** El escaneo de puertos es el primer paso de cualquier atacante. Necesitan saber qué puertos están abiertos antes de atacar. Detectar un escaneo nos permite identificar un ataque en sus etapas iniciales.
+
+**Resultado:** Wazuh detectó el escaneo de puertos y generó alertas.
+
+---
+
+## Prueba 4: Intentos de FTP con usuario falso
+
+**Comandos:**
+```bash
+ftp 192.168.140.1 2121
+ftp 192.168.140.1 2122
+ftp 192.168.140.1 2123
+ftp 192.168.140.1 2124
+ftp 192.168.140.1 2125
+```
+
+**Qué hicimos:** Intentamos conectar por FTP usando un usuario falso y contraseña incorrecta.
+
+**Por qué es útil:** Los atacantes también prueban otros servicios como FTP buscando puntos débiles.
+
+**Resultado:** Las conexiones fallaron porque no tenemos servicio FTP, y Wazuh registró estos intentos.
+
+---
+
+## Ejemplo de alerta en Kibana (SSH fallido)
+
+**Qué vemos en la alerta:**
+
+| Campo | Valor | Significado |
+|-------|-------|-------------|
+| `agent.hostname` | SRV2 | Máquina atacada |
+| `data.srcip` | 192.168.140.21 | IP del atacante |
+| `data.usr` | usuariofalso | Usuario que probaron |
+| `rule.description` | SSH authentication failed | Tipo de alerta |
+
+**Por qué es útil:** Esta alerta nos permite saber qué máquina está siendo atacada, desde qué IP, y qué usuario intentaron usar. Podemos bloquear esa IP inmediatamente.
+
+---
+
+## Resumen de pruebas
+
+| Prueba | Tipo de ataque | Qué detecta |
+|--------|----------------|-------------|
+| SSH con usuario falso | Fuerza bruta | Alertas de SSH fallido |
+| Acceso a rutas web sospechosas | Escaneo de directorios | Alertas de accesos no autorizados |
+| Escaneo con Nmap | Reconocimiento de red | Alertas de port scanning |
+| FTP fallido | Escaneo de servicios | Alertas de conexión denegada |
+
+---
+
+## Conclusión
+
+Todas las pruebas funcionaron correctamente. Nuestro SOC detectó cada ataque simulado y generó alertas visibles en Kibana.
+
+Esto demuestra que el SOC puede:
+- Identificar ataques en tiempo real
+- Mostrar la IP del atacante
+- Saber qué máquina está siendo atacada
+- Ayudar al administrador a tomar medidas
+
+---
+
+*Pruebas realizadas por: Anmolpreet Singh Kaur & Spandan Khadka*
+*Fecha: 12/05/2026*
+
+
 - [Index](../Index.md)
+
