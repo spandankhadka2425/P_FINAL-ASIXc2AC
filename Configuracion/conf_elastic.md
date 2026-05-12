@@ -1,4 +1,4 @@
-Perfecto. He leído el PDF. Empezamos documentando la instalación y configuración de **Elasticsearch**.
+**Elasticsearch**.
 
 ---
 
