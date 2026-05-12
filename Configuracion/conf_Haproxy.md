@@ -91,4 +91,88 @@ A continuación se muestra el contenido del archivo de configuración que hemos 
 *Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
 *Fecha: 04/05/2026*
 
+```markdown
+# Configuracion de HTTPS en HAProxy
+
+## Imagen 1 - Copia del certificado PEM al servidor HAProxy
+
+**Que estamos haciendo:**
+Copiamos el archivo `artgaleria.pem` desde el servidor web principal (SRV2) al servidor HAProxy (SRV0). Este archivo contiene el certificado SSL y la clave privada combinados, necesarios para que HAProxy pueda terminar las conexiones HTTPS y redirigir el trafico de forma segura.
+
+**Comando utilizado:**
+```bash
+scp /tmp/artgaleria.pem isard@192.168.140.4:/home/isard/
+```
+
+---
+
+## Imagen 2 - Verificacion del contenido del archivo PEM
+
+**Que estamos haciendo:**
+Visualizamos el contenido del archivo `artgaleria.pem` generado. Este archivo contiene el certificado SSL (bloque BEGIN CERTIFICATE) y la clave privada (bloque BEGIN PRIVATE KEY). Ambos son necesarios para que HAProxy pueda cifrar y descifrar las conexiones HTTPS.
+
+**Archivo generado:** `/tmp/artgaleria.pem`
+
+---
+
+## Imagen 3 - Generacion del archivo PEM combinado
+
+**Que estamos haciendo:**
+Combinamos el certificado SSL y la clave privada en un unico archivo PEM. Utilizamos `sudo cat` para leer el certificado (`artgaleria.crt`) y la clave (`artgaleria.key`), y redirigimos la salida a `/tmp/artgaleria.pem`. Este formato PEM es el que requiere HAProxy para funcionar con HTTPS.
+
+**Comando utilizado:**
+```bash
+sudo cat /etc/ssl/artgaleria/artgaleria.crt /etc/ssl/artgaleria/artgaleria.key | sudo tee /tmp/artgaleria.pem
+```
+
+---
+
+## Imagen 4 - Configuracion final de HAProxy para HTTPS
+
+**Que estamos haciendo:**
+Configuramos HAProxy para que escuche en el puerto 443 (HTTPS) y termine las conexiones SSL utilizando el certificado PEM. La configuracion incluye:
+- `frontend http_front`: redirige todo el trafico HTTP a HTTPS (301 redirect)
+- `frontend https_front`: escucha en el puerto 443, aplica el certificado SSL y envia el trafico al backend
+- `backend web_servers`: balancea la carga entre el servidor principal (192.168.140.2) y el backup (192.168.140.7), ambos en puerto 443 con verificacion SSL activada
+
+**Archivo modificado:** `/etc/haproxy/haproxy.cfg`
+
+**Contenido principal:**
+```haproxy
+frontend http_front
+    bind *:80
+    redirect scheme https code 301 if !{ ssl_fc }
+
+frontend https_front
+    bind *:443 ssl crt /etc/haproxy/ssl/artgaleria.pem
+    mode http
+    default_backend web_servers
+
+backend web_servers
+    mode http
+    balance roundrobin
+    option httpchk GET /
+    http-check expect status 200
+    server srv2_main 192.168.140.2:443 check ssl verify none
+    server srv2_backup 192.168.140.7:443 check ssl verify none backup
+```
+
+---
+
+## Resumen de la Configuracion
+
+| Paso | Accion | Estado |
+|------|--------|--------|
+| 1 | Copiar archivo PEM al servidor HAProxy | Completado |
+| 2 | Verificar contenido del archivo PEM | Completado |
+| 3 | Generar el archivo PEM combinado | Completado |
+| 4 | Configurar HAProxy para HTTPS | Completado |
+
+---
+
+*Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
+*Fecha: 12/05/2026*
+
+
+
 - [Index](../Index.md)

@@ -166,4 +166,9 @@ Esta prueba demuestra que el backup puede tomar el control manualmente cuando se
 *Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
 *Fecha: 04/05/2026*
 
+Para que el backup de Haproxy redirija a HTTPS para que funcione, simplemente copiamos los pasos de Haproxy al backup de Haproxy y funcionó.
+
+*Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
+*Fecha: 12/05/2026*
+
 - [Index](../Index.md)

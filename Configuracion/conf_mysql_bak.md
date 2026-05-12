@@ -120,4 +120,153 @@ Descomprimiendo la pagina web en el directorio `/var/www/html/` del servidor bac
 *Fecha: 04/05/2026*
 
 
+```markdown
+# Configuracion de Replicacion MySQL Master-Slave
+
+## Explicacion General
+
+El objetivo de estos pasos es crear una replica exacta de la base de datos del servidor principal (Master) en el servidor backup (Slave). De esta forma, cualquier cambio que hagamos en la base de datos principal se replica automaticamente en el backup. Si el servidor principal falla, el backup puede seguir funcionando sin perder datos.
+
+---
+
+## Exportacion de todas las bases de datos desde el Master
+
+**Donde se ejecuta:** Servidor Principal (SRV2_A - 192.168.140.2)
+
+**Que estamos haciendo:**
+Exportamos todas las bases de datos del servidor principal, incluyendo la estructura, los datos, los procedimientos almacenados, triggers y eventos. El archivo generado se guarda en `/tmp/full_mysql_backup.sql`. Este archivo se utilizara para importar los datos en el servidor backup.
+
+**Comando utilizado:**
+```bash
+mysqldump -u root -p --all-databases --source-data --routines --triggers --events > /tmp/full_mysql_backup.sql
+```
+
+**Resultado:**
+Archivo generado de 1.3MB que contiene toda la base de datos del Master.
+
+---
+
+## Verificacion del log binario en el Master
+
+**Donde se ejecuta:** Servidor Principal (SRV2_A - 192.168.140.2)
+
+**Que estamos haciendo:**
+Verificamos que el log binario esta activado en el servidor principal. El log binario es necesario para la replicacion porque registra todos los cambios que se hacen en la base de datos (INSERT, UPDATE, DELETE). El Master envia estos cambios al Slave.
+
+**Comando utilizado:**
+```bash
+mysql -u root -p -e "SHOW VARIABLES LIKE 'log_bin';"
+```
+
+**Resultado:**
+La variable `log_bin` muestra `ON`, lo que indica que la replicacion esta habilitada.
+
+---
+
+## Obtencion de la posicion actual del Master
+
+**Donde se ejecuta:** Servidor Principal (SRV2_A - 192.168.140.2)
+
+**Que estamos haciendo:**
+Obtenemos la posicion actual del archivo de log binario en el Master. Esta informacion (archivo y posicion) es fundamental para que el Slave sepa desde donde empezar a leer los cambios. En este caso, el archivo es `binlog.000024` y la posicion es `157`.
+
+**Comando utilizado:**
+```bash
+mysql -u root -p -e "SHOW MASTER STATUS;"
+```
+
+**Resultado:**
+```
+File: binlog.000024
+Position: 157
+```
+
+---
+
+## Verificacion del usuario replicador en el Master
+
+**Donde se ejecuta:** Servidor Principal (SRV2_A - 192.168.140.2)
+
+**Que estamos haciendo:**
+Verificamos que el usuario `replicator` existe en el Master. Este usuario es el que utilizara el Slave para conectarse al Master y solicitar los cambios. El usuario tiene permisos especificos de replicacion.
+
+**Comando utilizado:**
+```bash
+mysql -u root -p -e "SELECT User, Host FROM mysql.user WHERE User='replicator';"
+```
+
+**Resultado:**
+El usuario `replicator` existe y puede conectarse desde cualquier host (%).
+
+---
+
+## Insercion de un usuario de prueba en el Master
+
+**Donde se ejecuta:** Servidor Principal (SRV2_A - 192.168.140.2)
+
+**Que estamos haciendo:**
+Insertamos un nuevo usuario en la tabla `users` de la base de datos `soc_alerts`. Esta operacion se registrara en el log binario y posteriormente se replicara en el Slave para verificar que la replicacion funciona correctamente.
+
+**Comando utilizado:**
+```bash
+mysql -u root -p -e "USE soc_alerts; INSERT INTO users (username, email, password_hash) VALUES ('nuevo_user', 'nuevo@test.com', 'hash_nuevo123');"
+```
+
+---
+
+## Configuracion del Slave para conectarse al Master
+
+**Donde se ejecuta:** Servidor Backup (SRV2_B - 192.168.140.7)
+
+**Que estamos haciendo:**
+Configuramos el servidor Slave para que se conecte al Master. Le indicamos la direccion IP del Master, el usuario de replicacion, la contraseña, y el archivo y posicion del log binario desde donde debe empezar a leer los cambios.
+
+**Comando utilizado:**
+```bash
+mysql -u root -p -e "CHANGE MASTER TO
+    MASTER_HOST = '192.168.140.2',
+    MASTER_USER = 'replicator',
+    MASTER_PASSWORD = 'Replica123',
+    MASTER_LOG_FILE = 'binlog.000024',
+    MASTER_LOG_POS = 157;"
+```
+
+**Importante:** Esta configuracion se hace en el Slave, no en el Master, porque es el Slave quien inicia la conexion hacia el Master.
+
+---
+
+## Verificacion del estado de la replicacion en el Slave
+
+**Donde se ejecuta:** Servidor Backup (SRV2_B - 192.168.140.7)
+
+**Que estamos haciendo:**
+Comprobamos que la replicacion esta funcionando correctamente en el Slave. `Slave_IO_Running: Yes` indica que el Slave puede leer los cambios del Master. `Slave_SQL_Running: Yes` indica que el Slave puede aplicar esos cambios en su propia base de datos.
+
+**Comando utilizado:**
+```bash
+mysql -u root -p -e "SHOW SLAVE STATUS\G" | grep -E "Slave_IO_Running|Slave_SQL_Running|Last_Io_Error"
+```
+
+**Resultado:**
+Ambas variables muestran `Yes`, lo que confirma que la replicacion esta activa y funcionando.
+
+---
+
+---
+
+## Por que hacemos cada paso en cada servidor
+
+| Servidor | Motivo |
+|----------|--------|
+| Master | Contiene los datos originales. Desde aqui exportamos la base de datos y configuramos el log binario para registrar los cambios. |
+| Slave | Recibe la copia de los datos y se conecta al Master para solicitar los cambios en tiempo real. |
+
+---
+
+*Documentado por: Anmolpreet Singh Kaur & Spandan Khadka*
+*Fecha: 12/05/2026*
+
+
+
+
 - [Index](../Index.md)
